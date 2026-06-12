@@ -1,0 +1,34 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: servicedesk-backend
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/servicedesk}
+    username: ${DB_USER:servicedesk}
+    password: ${DB_PASSWORD:servicedesk}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:change-me-to-a-long-secret-key-for-hmac-sha256}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://127.0.0.1:3000}
+

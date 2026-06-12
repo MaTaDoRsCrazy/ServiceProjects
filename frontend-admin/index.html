@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate ServiceDesk</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <main class="login-screen" id="loginScreen">
+        <section class="login-card">
+            <p class="eyebrow">Corporate ServiceDesk</p>
+            <h1>Админ-панель заявок и оборудования</h1>
+            <p class="muted">Войдите под тестовой учетной записью: admin / admin123</p>
+            <form id="loginForm" class="stack">
+                <label>
+                    Логин
+                    <input id="username" value="admin" autocomplete="username" required>
+                </label>
+                <label>
+                    Пароль
+                    <input id="password" value="admin123" type="password" autocomplete="current-password" required>
+                </label>
+                <button class="primary" type="submit">Войти</button>
+                <p class="error" id="loginError"></p>
+            </form>
+        </section>
+    </main>
+
+    <main class="app hidden" id="app">
+        <aside class="sidebar">
+            <div>
+                <p class="eyebrow">ServiceDesk</p>
+                <h2>Операционный центр</h2>
+            </div>
+            <nav>
+                <button class="nav active" data-view="dashboard">Сводка</button>
+                <button class="nav" data-view="tickets">Заявки</button>
+                <button class="nav" data-view="equipment">Оборудование</button>
+            </nav>
+            <button class="ghost" id="logoutButton">Выйти</button>
+        </aside>
+
+        <section class="content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Панель управления</p>
+                    <h1 id="viewTitle">Сводка</h1>
+                </div>
+                <div class="user-pill" id="userPill"></div>
+            </header>
+
+            <section class="view" id="dashboardView">
+                <div class="cards" id="dashboardCards"></div>
+                <article class="panel">
+                    <h3>Статусы заявок</h3>
+                    <div class="bars" id="ticketBars"></div>
+                </article>
+            </section>
+
+            <section class="view hidden" id="ticketsView">
+                <article class="panel split">
+                    <div>
+                        <h3>Новая заявка</h3>
+                        <p class="muted">Создайте обращение от имени текущего пользователя.</p>
+                    </div>
+                    <form id="ticketForm" class="ticket-form">
+                        <input id="ticketTitle" placeholder="Тема заявки" required>
+                        <select id="ticketPriority">
+                            <option value="LOW">Низкий</option>
+                            <option value="MEDIUM" selected>Средний</option>
+                            <option value="HIGH">Высокий</option>
+                            <option value="CRITICAL">Критический</option>
+                        </select>
+                        <textarea id="ticketDescription" placeholder="Описание проблемы" required></textarea>
+                        <button class="primary" type="submit">Создать</button>
+                    </form>
+                </article>
+                <article class="panel">
+                    <div class="panel-title">
+                        <h3>Список заявок</h3>
+                        <button class="ghost compact" id="refreshTickets">Обновить</button>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Тема</th>
+                                    <th>Приоритет</th>
+                                    <th>Статус</th>
+                                    <th>Автор</th>
+                                    <th>Действие</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ticketsBody"></tbody>
+                        </table>
+                    </div>
+                </article>
+            </section>
+
+            <section class="view hidden" id="equipmentView">
+                <article class="panel">
+                    <div class="panel-title">
+                        <h3>Реестр оборудования</h3>
+                        <button class="ghost compact" id="refreshEquipment">Обновить</button>
+                    </div>
+                    <div class="equipment-grid" id="equipmentGrid"></div>
+                </article>
+            </section>
+        </section>
+    </main>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>
+
